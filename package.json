@@ -13,5 +13,20 @@
     "encodeURIComponent"
   ],
   "author": "Spencer Alger <email@spalger.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spalger/encode-uri-query.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spalger/encode-uri-query/issues"
+  },
+  "homepage": "https://github.com/spalger/encode-uri-query#readme",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^3.0.2"
+  }
 }

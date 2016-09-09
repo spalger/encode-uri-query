@@ -1,38 +1,31 @@
 const expect = require('expect.js')
+const encodeUriQuery = require('../');
 
 describe('encodeUriQuery', function() {
   it('should correctly encode uri query and not encode chars defined as pchar set in rfc3986',
       function() {
     //don't encode alphanum
-    expect(encodeUriQuery('asdf1234asdf')).
-      toEqual('asdf1234asdf');
+    expect(encodeUriQuery('asdf1234asdf')).to.be('asdf1234asdf');
 
     //don't encode unreserved
-    expect(encodeUriQuery('-_.!~*\'() -_.!~*\'()')).
-      toEqual('-_.!~*\'()+-_.!~*\'()');
+    expect(encodeUriQuery('-_.!~*\'() -_.!~*\'()')).to.be('-_.!~*\'()+-_.!~*\'()');
 
     //don't encode the rest of pchar
-    expect(encodeUriQuery(':@$, :@$,')).
-      toEqual(':@$,+:@$,');
+    expect(encodeUriQuery(':@$, :@$,')).to.be(':@$,+:@$,');
 
     //encode '&', ';', '=', '+', and '#'
-    expect(encodeUriQuery('&;=+# &;=+#')).
-      toEqual('%26;%3D%2B%23+%26;%3D%2B%23');
+    expect(encodeUriQuery('&;=+# &;=+#')).to.be('%26;%3D%2B%23+%26;%3D%2B%23');
 
     //encode ' ' as '+'
-    expect(encodeUriQuery('  ')).
-      toEqual('++');
+    expect(encodeUriQuery('  ')).to.be('++');
 
     //encode ' ' as '%20' when a flag is used
-    expect(encodeUriQuery('  ', true)).
-      toEqual('%20%20');
+    expect(encodeUriQuery('  ', true)).to.be('%20%20');
 
     //do not encode `null` as '+' when flag is used
-    expect(encodeUriQuery('null', true)).
-      toEqual('null');
+    expect(encodeUriQuery('null', true)).to.be('null');
 
     //do not encode `null` with no flag
-    expect(encodeUriQuery('null')).
-      toEqual('null');
+    expect(encodeUriQuery('null')).to.be('null');
   });
 });
